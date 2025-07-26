@@ -21,12 +21,13 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onReporterSele
     <header className="sticky top-0 z-50 bg-white shadow-lg">
       {/* Breaking News Bar */}
       {showBreaking && (
-        <div className="bg-red-600 text-white px-4 py-2 text-sm animate-pulse">
+        <div className="bg-red-600 text-white px-4 py-2 text-sm">
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             <div className="flex items-center space-x-2">
               <Zap className="w-4 h-4 animate-bounce" />
               <span className="font-semibold">BREAKING:</span>
-              <span>LexCorp satellite falls from orbit – was Superman involved?</span>
+              <span>Hi, I'm Rohit, a web developer and die-hard DC fan, building these sites to one day get hired by James Gunn for their DCU.
+</span>
             </div>
             <button 
               onClick={() => setShowBreaking(false)}
