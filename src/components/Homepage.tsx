@@ -1,11 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Clock,
   MapPin,
   TrendingUp,
   Activity,
   AlertTriangle,
+  Globe,
+  Camera,
+  Star,
+  Users,
+  Shield,
+  Zap,
+  BookOpen,
+  Radio,
+  Calendar,
+  Award
 } from 'lucide-react';
 
 const Homepage: React.FC = () => {
@@ -84,6 +93,88 @@ const Homepage: React.FC = () => {
     }      
   ];
 
+  const worldNews = [
+    {
+      title: 'Atlantis Diplomatic Relations with Surface World Improve',
+      location: 'Atlantic Ocean',
+      author: 'Steve Lombard',
+      time: '3 hours ago',
+    },
+    {
+      title: 'Themyscira Opens Cultural Exchange Program',
+      location: 'Mediterranean Sea',
+      author: 'Cat Grant',
+      time: '5 hours ago',
+    },
+    {
+      title: 'Coast City Rebuilds After Green Lantern Incident',
+      location: 'California',
+      author: 'Ron Troupe',
+      time: '7 hours ago',
+    },
+    {
+      title: 'Gorilla City Scientists Share Technology Breakthrough',
+      location: 'Africa',
+      author: 'Clark Kent',
+      time: '9 hours ago',
+    }
+  ];
+
+  const heroSpotlight = {
+    name: 'Green Arrow',
+    realName: 'Oliver Queen',
+    city: 'Star City',
+    recentAct: 'Stopped major drug trafficking operation in the Glades',
+    image: 'https://static.wikia.nocookie.net/marvel_dc/images/4/42/Green_Arrow_0021.jpg',
+    quote: '"Justice isn\'t just about stopping the bad guys. It\'s about giving people hope for a better tomorrow."'
+  };
+
+  const photoGallery = [
+    {
+      image: 'https://i.ytimg.com/vi/uhUht6vAsMY/maxresdefault.jpg',
+      caption: 'Superman saves falling aircraft over Metropolis Bridge',
+      photographer: 'Jimmy Olsen'
+    },
+    {
+      image: 'https://res.cloudinary.com/dsol90tiu/image/upload/v1753739636/Untitled_7_mayqbh.png',
+      caption: 'Flash creates whirlwind to stop forest fire',
+      photographer: 'Staff Photographer'
+    },
+    {
+      image: 'https://res.cloudinary.com/dsol90tiu/image/upload/v1753739635/Untitled_2_n24ezi.jpg',
+      caption: 'Wonder Woman at the United Nations headquarters',
+      photographer: 'AP Photo'
+    }
+  ];
+
+  const opinions = [
+    {
+      title: 'The Future of Meta-Human Registration',
+      author: 'Perry White',
+      excerpt: 'As heroes multiply, should we require registration? The debate continues...',
+      time: '6 hours ago'
+    },
+    {
+      title: 'Corporate Responsibility in the Age of Heroes',
+      author: 'Lois Lane',
+      excerpt: 'Companies like Wayne Enterprises set the bar for how business can support heroic efforts...',
+      time: '8 hours ago'
+    }
+  ];
+
+  const sports = [
+    {
+      title: 'Metropolis Meteors Win Championship',
+      score: 'Meteors 24 - Sharks 17',
+      time: '2 hours ago'
+    },
+    {
+      title: 'Flash Agrees to Honorary Coach Position',
+      team: 'Central City Track Team',
+      time: '5 hours ago'
+    }
+  ];
+
   const trendingTopics = [
     'Superman sightings',
     'LexCorp investigation',
@@ -115,10 +206,10 @@ const Homepage: React.FC = () => {
           </div>
         </section>
 
-        {/* Top News Section with newspaper styling */}
+        {/* Top News Section */}
         <section className="mb-12 border-black pt-8">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-black text-black  uppercase">
+            <h2 className="text-4xl font-black text-black uppercase">
               {topNews.headline}
             </h2>
             <div className="w-32 h-[1px] bg-gray-700 mx-auto mt-4"></div>
@@ -130,7 +221,7 @@ const Homepage: React.FC = () => {
                 <img
                   src={topNews.author.avatar}
                   alt={`Avatar of ${topNews.author.name}`}
-                  className="w-full h-full object-cover "
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
@@ -151,7 +242,7 @@ const Homepage: React.FC = () => {
               <img
                 src={topNews.photo.url}
                 alt={topNews.photo.caption}
-                className="w-full h-80 object-cover "
+                className="w-full h-80 object-cover"
               />
               <div className="bg-black text-white px-3 py-1 text-xs font-serif">
                 {topNews.photo.caption}
@@ -160,23 +251,51 @@ const Homepage: React.FC = () => {
           </div>
         </section>
 
+        {/* World News Banner */}
+        <section className="mb-12">
+          <div className="border-t-2 border-b-2 border-black py-6">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-black text-black uppercase tracking-tight flex items-center justify-center gap-2">
+                <Globe className="w-8 h-8" />
+                World News
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {worldNews.map((news, index) => (
+                <div key={index} className="border-l-2 border-gray-300 pl-4 hover:border-black transition-colors cursor-pointer">
+                  <div className="flex items-center gap-1 text-xs font-serif font-bold text-gray-600 mb-1">
+                    <MapPin className="w-3 h-3" />
+                    {news.location}
+                  </div>
+                  <h3 className="text-sm font-serif font-bold text-black leading-tight mb-2 hover:underline">
+                    {news.title}
+                  </h3>
+                  <div className="flex justify-between items-center text-xs font-serif text-gray-500">
+                    <span>By {news.author}</span>
+                    <span>{news.time}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Latest News with newspaper column styling */}
+          {/* Latest News */}
           <section className="lg:col-span-2">
             <div className="border-t-2 border-gray-300 pt-6 mb-6">
               <h2 className="text-3xl font-black text-black tracking-tight uppercase text-center mb-4">
                 Latest News
               </h2>
-              {/* <div className="w-24 h-0.5 bg-black mx-auto"></div> */}
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               {latestNews.map((article, index) => (
                 <article
                   key={index}
                   className="group border-b border-gray-300 pb-6 cursor-pointer hover:bg-gray-50 p-3 transition-colors"
                 >
-                  <Link to="/article">
+                  <div>
                     <img
                       src={article.image}
                       alt={article.title}
@@ -199,13 +318,133 @@ const Homepage: React.FC = () => {
                         By {article.author}
                       </p>
                     </div>
-                  </Link>
+                  </div>
                 </article>
               ))}
             </div>
+
+            {/* Hero Spotlight */}
+            <section className="mb-12">
+              <div className="border-t-2 border-gray-300 pt-6 mb-6">
+                <h2 className="text-3xl font-black text-black tracking-tight uppercase text-center mb-4 flex items-center justify-center gap-2">
+                  <Star className="w-8 h-8" />
+                  Hero Spotlight
+                </h2>
+              </div>
+              <div className="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-gray-300 p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="md:col-span-1">
+                    <img
+                      src={heroSpotlight.image}
+                      alt={heroSpotlight.name}
+                      className="w-full h-64 object-cover border border-gray-300"
+                    />
+                  </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <div>
+                      <h3 className="text-2xl font-serif font-black text-black uppercase">
+                        {heroSpotlight.name}
+                      </h3>
+                      <p className="text-sm font-serif text-gray-600 italic">
+                        {heroSpotlight.realName} • {heroSpotlight.city}
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="text-sm font-serif font-bold text-black uppercase mb-1">Recent Heroic Act:</h4>
+                        <p className="text-sm font-serif text-gray-800">{heroSpotlight.recentAct}</p>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-serif font-bold text-black uppercase mb-1">Quote:</h4>
+                        <blockquote className="text-sm font-serif italic text-gray-800 border-l-4 border-green-600 pl-4">
+                          {heroSpotlight.quote}
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Photo Gallery */}
+            <section className="mb-12">
+              <div className="border-t-2 border-gray-300 pt-6 mb-6">
+                <h2 className="text-3xl font-black text-black tracking-tight uppercase text-center mb-4 flex items-center justify-center gap-2">
+                  <Camera className="w-8 h-8" />
+                  Photo Gallery
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {photoGallery.map((photo, index) => (
+                  <div key={index} className="group cursor-pointer">
+                    <img
+                      src={photo.image}
+                      alt={photo.caption}
+                      className="w-full h-48 object-cover border border-gray-300 group-hover:opacity-90 transition-opacity"
+                    />
+                    <div className="bg-black text-white p-3">
+                      <p className="text-xs font-serif font-bold mb-1">{photo.caption}</p>
+                      <p className="text-xs font-serif text-gray-300">Photo by {photo.photographer}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Opinion & Editorial */}
+            <section className="mb-12">
+              <div className="border-t-2 border-gray-300 pt-6 mb-6">
+                <h2 className="text-3xl font-black text-black tracking-tight uppercase text-center mb-4 flex items-center justify-center gap-2">
+                  <BookOpen className="w-8 h-8" />
+                  Opinion & Editorial
+                </h2>
+              </div>
+              <div className="space-y-6">
+                {opinions.map((opinion, index) => (
+                  <article key={index} className="border-l-4 border-gray-600 pl-6 hover:border-black transition-colors cursor-pointer">
+                    <h3 className="text-xl font-serif font-bold text-black mb-2 hover:underline">
+                      {opinion.title}
+                    </h3>
+                    <p className="text-sm font-serif text-gray-800 mb-3 leading-relaxed">
+                      {opinion.excerpt}
+                    </p>
+                    <div className="flex justify-between items-center text-xs font-serif text-gray-600">
+                      <span className="font-bold">By {opinion.author}</span>
+                      <span>{opinion.time}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            {/* Sports */}
+            <section className="mb-12">
+              <div className="border-t-2 border-gray-300 pt-6 mb-6">
+                <h2 className="text-3xl font-black text-black tracking-tight uppercase text-center mb-4 flex items-center justify-center gap-2">
+                  <Award className="w-8 h-8" />
+                  Sports
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {sports.map((sport, index) => (
+                  <div key={index} className="bg-gray-50 border border-gray-300 p-4 hover:bg-gray-100 transition-colors cursor-pointer">
+                    <h3 className="text-lg font-serif font-bold text-black mb-2">
+                      {sport.title}
+                    </h3>
+                    {sport.score && (
+                      <p className="text-sm font-serif font-bold text-gray-800 mb-2">{sport.score}</p>
+                    )}
+                    {sport.team && (
+                      <p className="text-sm font-serif text-gray-800 mb-2">{sport.team}</p>
+                    )}
+                    <p className="text-xs font-serif text-gray-600">{sport.time}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
           </section>
 
-          {/* Sidebar with newspaper-style boxes */}
+          {/* Enhanced Sidebar */}
           <aside className="space-y-6">
             {/* Live Hero Tracker */}
             <div className="border-2 border-gray-300 bg-white">
@@ -237,10 +476,8 @@ const Homepage: React.FC = () => {
                     OFFLINE
                   </span>
                 </div>
-                <button
-                  className="w-full bg-gray-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors"
-                >
-                  <Link to="/tracker">View Full Tracker</Link>
+                <button className="w-full bg-gray-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors">
+                  View Full Tracker
                 </button>
               </div>
             </div>
@@ -260,6 +497,80 @@ const Homepage: React.FC = () => {
                 <div className="text-black font-serif font-bold uppercase text-sm">Partly Cloudy</div>
                 <div className="text-xs text-gray-600 mt-2 font-serif italic">
                   No unusual atmospheric disturbances detected
+                </div>
+              </div>
+            </div>
+
+            {/* Daily Planet Radio */}
+            <div className="border-2 border-blue-600 bg-white">
+              <div className="bg-blue-600 text-white p-3">
+                <div className="flex items-center space-x-2">
+                  <Radio className="w-4 h-4" />
+                  <h3 className="text-sm font-serif font-bold uppercase tracking-wide">
+                    DP Radio Live
+                  </h3>
+                  <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-sm font-serif font-bold text-black mb-2">NOW PLAYING:</p>
+                <p className="text-sm font-serif text-black mb-4">
+                  "Hero Hour" with Perry White discussing meta-human legislation
+                </p>
+                <button className="w-full bg-blue-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-blue-700 transition-colors">
+                  Listen Live
+                </button>
+              </div>
+            </div>
+
+            {/* Events Calendar */}
+            <div className="border-2 border-gray-300 bg-white">
+              <div className="bg-gray-600 text-white p-3">
+                <div className="flex items-center space-x-2">
+                  <Calendar className="w-4 h-4" />
+                  <h3 className="text-sm font-serif font-bold uppercase tracking-wide">
+                    Upcoming Events
+                  </h3>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="border-b border-gray-200 pb-2">
+                  <p className="text-sm font-serif font-bold text-black">Justice League Press Conference</p>
+                  <p className="text-xs font-serif text-gray-600">Tomorrow 2:00 PM</p>
+                </div>
+                <div className="border-b border-gray-200 pb-2">
+                  <p className="text-sm font-serif font-bold text-black">Wayne Foundation Gala</p>
+                  <p className="text-xs font-serif text-gray-600">Friday 7:00 PM</p>
+                </div>
+                <div className="border-b border-gray-200 pb-2">
+                  <p className="text-sm font-serif font-bold text-black">Hero Appreciation Day</p>
+                  <p className="text-xs font-serif text-gray-600">Next Week</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Staff Picks */}
+            <div className="border-2 border-green-600 bg-white">
+              <div className="bg-green-600 text-white p-3">
+                <div className="flex items-center space-x-2">
+                  <Users className="w-4 h-4" />
+                  <h3 className="text-sm font-serif font-bold uppercase tracking-wide">
+                    Staff Picks
+                  </h3>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="border-b border-gray-200 pb-2">
+                  <p className="text-sm font-serif font-bold text-black hover:underline cursor-pointer">
+                    The Psychology of Heroism
+                  </p>
+                  <p className="text-xs font-serif text-gray-600">Recommended by Lois Lane</p>
+                </div>
+                <div className="border-b border-gray-200 pb-2">
+                  <p className="text-sm font-serif font-bold text-black hover:underline cursor-pointer">
+                    Gotham's Crime Statistics: A Deep Dive
+                  </p>
+                  <p className="text-xs font-serif text-gray-600">Recommended by Clark Kent</p>
                 </div>
               </div>
             </div>
@@ -299,12 +610,11 @@ const Homepage: React.FC = () => {
                   New evidence suggests LexCorp's involvement in recent satellite
                   malfunction.
                 </p>
-                <Link
-                  to="/lexwatch"
+                <button
                   className="block w-full bg-red-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-red-700 transition-colors text-center"
                 >
                   Read Investigation
-                </Link>
+                </button>
               </div>
             </div>
           </aside>

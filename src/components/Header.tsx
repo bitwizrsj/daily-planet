@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     <>
       {/* Info Bar */}
       <div className="w-full bg-gray-100 border-b border-gray-200 text-center py-1 text-xs text-gray-600 font-serif tracking-wide">
-        Hi, I'm Rohit, a web developer and die-hard DC fan, building these sites to one day get hired by James Gunn for their DCU.
+        Hi, I'm Rohit, a web developer and die-hard DC fan, building these sites to one day get hired by James Gunn for DCU. <a href='/contact' className='text-red-500 hover:text-blue-500'>Contact Me</a>
       </div>
 
       {/* Top Bar */}
