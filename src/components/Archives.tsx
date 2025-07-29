@@ -141,7 +141,7 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
       </header>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <div className="bg-white rounded-sm shadow-lg p-6 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
           <div className="md:col-span-2 relative">
@@ -151,7 +151,7 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
               placeholder="Search headlines, authors, or content..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
@@ -161,7 +161,7 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               {years.map(year => (
                 <option key={year} value={year}>{year}</option>
@@ -175,7 +175,7 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
             >
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -208,7 +208,7 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
         {filteredEntries.map((entry, index) => (
           <article
             key={index}
-            className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border border-gray-100"
+            className="bg-white rounded-sm shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border border-gray-100"
             onClick={() => onNavigate('article')}
           >
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
@@ -258,16 +258,16 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
       )}
 
       {/* Easter Eggs Section */}
-      <div className="mt-12 bg-gradient-to-r from-slate-800 to-slate-600 rounded-2xl p-8 text-white">
+      <div className="mt-12 bg-gradient-to-r from-slate-800 to-slate-600 rounded-sm p-8 text-white">
         <h3 className="text-2xl font-bold mb-4 font-serif">Notable Archive Discoveries</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white/10 rounded-lg p-4">
+          <div className="bg-white/10 rounded-sm p-4">
             <h4 className="font-semibold mb-2">First Superman Sighting</h4>
             <p className="text-sm text-gray-200">
               Our archives contain the very first reported Superman sighting, filed by an intern who later became our Editor-in-Chief.
             </p>
           </div>
-          <div className="bg-white/10 rounded-lg p-4">
+          <div className="bg-white/10 rounded-sm p-4">
             <h4 className="font-semibold mb-2">Anonymous Donations</h4>
             <p className="text-sm text-gray-200">
               Mysterious recurring headline: "Bruce W. makes anonymous donation" - appears 47 times since 2020.

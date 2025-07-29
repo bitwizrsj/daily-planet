@@ -103,7 +103,7 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
         <img
           src={article.image}
           alt="Article hero"
-          className="w-full h-96 object-cover rounded-2xl shadow-lg"
+          className="w-full h-96 object-cover rounded-sm shadow-lg"
         />
         <p className="text-sm text-gray-600 mt-2 italic">
           Superman confronts Brainiac's drones above downtown Metropolis. Photo: Jimmy Olsen/Daily Planet
@@ -169,7 +169,7 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
             </h3>
             
             <div className="space-y-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-sm p-4">
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     JS
@@ -184,7 +184,7 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
                 </p>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-sm p-4">
                 <div className="flex items-center space-x-3 mb-2">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     MR
@@ -205,13 +205,13 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
         {/* Sidebar */}
         <aside className="space-y-6">
           {/* Related Articles */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="bg-white rounded-sm shadow-lg p-6">
             <h3 className="text-lg font-bold mb-4 text-slate-800">Related Articles</h3>
             <div className="space-y-4">
               {relatedArticles.map((related, index) => (
                 <div
                   key={index}
-                  className="cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                  className="cursor-pointer hover:bg-gray-50 p-3 rounded-sm transition-colors"
                   onClick={() => onNavigate('article')}
                 >
                   <h4 className="font-semibold text-sm text-slate-800 hover:text-blue-600 transition-colors">
@@ -226,7 +226,7 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
           </div>
 
           {/* Author Bio */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="bg-white rounded-sm shadow-lg p-6">
             <h3 className="text-lg font-bold mb-4 text-slate-800">About the Author</h3>
             <div className="flex items-center space-x-3 mb-4">
               <img

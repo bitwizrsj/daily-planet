@@ -144,7 +144,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Map Section */}
         <section className="lg:col-span-2">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-sm shadow-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-slate-800">Live Map</h2>
@@ -154,7 +154,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
                     <select
                       value={selectedHero}
                       onChange={(e) => setSelectedHero(e.target.value)}
-                      className="border border-gray-300 rounded-lg px-3 py-1 text-sm"
+                      className="border border-gray-300 rounded-sm px-3 py-1 text-sm"
                     >
                       <option value="all">All Heroes</option>
                       <option value="superman">Superman</option>
@@ -235,7 +235,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
         {/* Sidebar */}
         <aside className="space-y-6">
           {/* Hero Status */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <div className="bg-white rounded-sm shadow-lg p-6">
             <h3 className="text-lg font-bold mb-4 text-slate-800">Hero Status</h3>
             <div className="space-y-4">
               {heroes.map((hero) => (
@@ -269,7 +269,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
           </div>
 
           {/* Recent Sightings */}
-          <div className="bg-white rounded-2xl shadow-lg p-6">
+          <div className="bg-white rounded-sm shadow-lg p-6">
             <h3 className="text-lg font-bold mb-4 text-slate-800">Recent Sightings</h3>
             <div className="space-y-4 max-h-80 overflow-y-auto">
               {recentSightings.map((sighting, index) => (
@@ -299,7 +299,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
           </div>
 
           {/* Report Sighting */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-2xl p-6">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-sm p-6">
             <div className="flex items-center space-x-2 mb-4">
               <Zap className="w-5 h-5 text-blue-600" />
               <h3 className="text-lg font-bold text-blue-800">Report a Sighting</h3>
@@ -307,7 +307,7 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
             <p className="text-sm text-blue-700 mb-4">
               Did you see a superhero in action? Help us keep the tracker updated with your verified sightings.
             </p>
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <button className="w-full bg-blue-600 text-white py-3 rounded-sm font-semibold hover:bg-blue-700 transition-colors">
               Submit Sighting Report
             </button>
             <p className="text-xs text-blue-600 mt-2 text-center">

@@ -112,7 +112,7 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
         <p className="text-xl text-gray-700 max-w-2xl mx-auto">
           Investigating LexCorp's activities and holding Lex Luthor accountable through fearless journalism
         </p>
-        <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4 max-w-2xl mx-auto">
+        <div className="mt-6 bg-red-50 border border-red-200 rounded-sm p-4 max-w-2xl mx-auto">
           <div className="flex items-center space-x-2">
             <AlertTriangle className="w-5 h-5 text-red-600" />
             <p className="text-red-800 font-semibold">Active Investigations: 12</p>
@@ -161,7 +161,7 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
             {investigations.map((investigation, index) => (
               <article
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                className="bg-white rounded-sm shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                 onClick={() => onNavigate('article')}
               >
                 <img
@@ -230,7 +230,7 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
                     </div>
                   </div>
                   
-                  <div className="flex-1 bg-white rounded-lg shadow-md p-6">
+                  <div className="flex-1 bg-white rounded-sm shadow-md p-6">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-semibold text-slate-800">{item.event}</h3>
                       <span className="text-sm text-gray-500">{item.date}</span>
@@ -254,7 +254,7 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {team.map((member, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <div key={index} className="bg-white rounded-sm shadow-lg p-6 text-center">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -267,16 +267,16 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
               ))}
             </div>
             
-            <div className="mt-12 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-2xl p-8 text-center">
+            <div className="mt-12 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-sm p-8 text-center">
               <h3 className="text-2xl font-bold mb-4 text-red-800">Submit Anonymous Tips</h3>
               <p className="text-red-700 mb-6">
                 Have information about LexCorp's activities? Our secure tip line protects whistleblowers and sources.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                <button className="bg-red-600 text-white px-8 py-3 rounded-sm font-semibold hover:bg-red-700 transition-colors">
                   Submit Secure Tip
                 </button>
-                <button className="border border-red-600 text-red-600 px-8 py-3 rounded-lg font-semibold hover:bg-red-600 hover:text-white transition-colors">
+                <button className="border border-red-600 text-red-600 px-8 py-3 rounded-sm font-semibold hover:bg-red-600 hover:text-white transition-colors">
                   Download Secure App
                 </button>
               </div>

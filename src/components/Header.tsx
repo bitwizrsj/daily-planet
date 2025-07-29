@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Globe, Search, Menu, X, Zap } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 interface HeaderProps {
   currentPage: string;
@@ -7,9 +8,25 @@ interface HeaderProps {
   onReporterSelect: (reporter: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onReporterSelect }) => {
+const sections = [
+  { label: 'Home', page: '' },
+  { label: 'LexWatch', page: 'lexwatch', highlight: true },
+  { label: 'Hero Tracker', page: 'tracker' },
+  { label: 'Archives', page: 'archives' },
+];
+
+const reporters = [
+  { name: 'Lois Lane', key: 'lois' },
+  { name: 'Clark Kent', key: 'clark' },
+  { name: 'Cat Grant', key: 'cat' },
+];
+
+const Header: React.FC<HeaderProps> = ({
+  currentPage,
+  onNavigate,
+  onReporterSelect,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showBreaking, setShowBreaking] = useState(true);
 
   const handleReporterClick = (reporter: string) => {
     onReporterSelect(reporter);
@@ -18,171 +35,153 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onReporterSele
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-lg">
-      {/* Breaking News Bar */}
-      {showBreaking && (
-        <div className="bg-red-600 text-white px-4 py-2 text-sm">
-          <div className="flex items-center justify-between max-w-7xl mx-auto">
-            <div className="flex items-center space-x-2">
-              <Zap className="w-4 h-4 animate-bounce" />
-              <span className="font-semibold">BREAKING:</span>
-              <span>Hi, I'm Rohit, a web developer and die-hard DC fan, building these sites to one day get hired by James Gunn for their DCU.
-</span>
-            </div>
-            <button 
-              onClick={() => setShowBreaking(false)}
-              className="text-white hover:text-gray-200"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      )}
+    <>
+      {/* Info Bar */}
+      <div className="w-full bg-gray-100 border-b border-gray-200 text-center py-1 text-xs text-gray-600 font-serif tracking-wide">
+        Hi, I'm Rohit, a web developer and die-hard DC fan, building these sites to one day get hired by James Gunn for their DCU.
+      </div>
 
-      {/* Main Header */}
-      <div className="bg-slate-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div 
-              className="flex items-center space-x-3 cursor-pointer group"
-              onClick={() => onNavigate('home')}
-            >
-              <div className="relative">
-                <Globe className="w-8 h-8 text-yellow-400 animate-spin-slow group-hover:animate-spin" />
-                <div className="absolute inset-0 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold font-serif">The Daily Planet</h1>
-                <p className="text-sm text-gray-300">Metropolis • Est. 1938</p>
-              </div>
-            </div>
+      {/* Top Bar */}
+      <div className="bg-white w-full border-b border-gray-200 md:static sticky top-0 z-50">
+        <div className="relative max-w-4xl mx-auto flex items-center justify-center px-4 py-2">
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => onNavigate('home')}
-                className={`hover:text-yellow-400 transition-colors ${
-                  currentPage === 'home' ? 'text-yellow-400' : ''
-                }`}
-              >
-                Home
-              </button>
-              <div className="relative group">
-                <button className="hover:text-yellow-400 transition-colors">
-                  Reporters
-                </button>
-                <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48">
-                  <button
-                    onClick={() => handleReporterClick('lois')}
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-100 rounded"
-                  >
-                    Lois Lane
-                  </button>
-                  <button
-                    onClick={() => handleReporterClick('clark')}
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-100 rounded"
-                  >
-                    Clark Kent
-                  </button>
-                  <button
-                    onClick={() => handleReporterClick('cat')}
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-100 rounded"
-                  >
-                    Cat Grant
-                  </button>
-                </div>
-              </div>
-              <button
-                onClick={() => onNavigate('lexwatch')}
-                className={`hover:text-yellow-400 transition-colors ${
-                  currentPage === 'lexwatch' ? 'text-yellow-400' : ''
-                }`}
-              >
-                LexWatch
-              </button>
-              <button
-                onClick={() => onNavigate('tracker')}
-                className={`hover:text-yellow-400 transition-colors ${
-                  currentPage === 'tracker' ? 'text-yellow-400' : ''
-                }`}
-              >
-                Hero Tracker
-              </button>
-              <button
-                onClick={() => onNavigate('archives')}
-                className={`hover:text-yellow-400 transition-colors ${
-                  currentPage === 'archives' ? 'text-yellow-400' : ''
-                }`}
-              >
-                Archives
-              </button>
-              <Search className="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors" />
-            </nav>
+          {/* Quote - only on md+ */}
+          <span
+            className="hidden md:inline-block absolute left-0 text-xs font-serif italic text-gray-800"
+            style={{
+              border: '1.5px solid #888',
+              borderRadius: '3px',
+              padding: '4px 8px',
+              fontWeight: 500,
+              boxShadow: '1px 1px 0 #888, -1px -1px 0 #888',
+              fontFamily: 'Georgia, Times, \"Times New Roman\", serif',
+              lineHeight: 1.1,
+            }}
+          >
+            "The Voice of<br />Metropolis"
+            {/* Decorative corners */}
+            <span style={{
+              position: 'absolute', left: 2, top: 2,
+              width: 12, height: 2, background: '#888',
+              borderRadius: 1, transform: 'rotate(-20deg)'
+            }} />
+            <span style={{
+              position: 'absolute', right: 2, top: 2,
+              width: 12, height: 2, background: '#888',
+              borderRadius: 1, transform: 'rotate(20deg)'
+            }} />
+            <span style={{
+              position: 'absolute', left: 2, bottom: 2,
+              width: 12, height: 2, background: '#888',
+              borderRadius: 1, transform: 'rotate(20deg)'
+            }} />
+            <span style={{
+              position: 'absolute', right: 2, bottom: 2,
+              width: 12, height: 2, background: '#888',
+              borderRadius: 1, transform: 'rotate(-20deg)'
+            }} />
+          </span>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          {/* Mobile Menu Icon (left side on mobile only) */}
+          <button
+            className="block md:hidden absolute left-0 p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Open menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+
+          {/* Logo */}
+          <img
+            src={logo}
+            alt="The Daily Planet"
+            className="w-44 md:w-[300px] object-contain"
+          />
+
+          {/* Search Icon (right side, always shown) */}
+          <button
+            className="absolute right-0 p-2"
+            aria-label="Search"
+          >
+            <Search className="w-6 h-6 text-gray-700" />
+          </button>
         </div>
       </div>
 
+      {/* Sticky Navbar only on large screens */}
+      <header className="hidden md:block bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto flex items-center py-0 px-4">
+          <nav className="flex flex-1 justify-center space-x-6 w-full">
+            {sections.map((section) => (
+              <button
+                key={section.page}
+                onClick={() => onNavigate(section.page)}
+                className={`text-sm font-serif uppercase tracking-wide px-2 py-3 hover:underline transition-colors ${
+                  currentPage === section.page
+                    ? 'text-black underline underline-offset-4'
+                    : section.highlight
+                    ? 'text-red-700'
+                    : 'text-gray-700'
+                }`}
+              >
+                {section.label}
+              </button>
+            ))}
+
+            {/* Reporters dropdown */}
+            <div className="relative group">
+              <button className="text-sm font-serif uppercase tracking-wide px-2 py-3 hover:underline text-gray-700">
+                Reporters
+              </button>
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-white border border-gray-200 shadow-lg rounded min-w-40 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity z-20">
+                {reporters.map((r) => (
+                  <button
+                    key={r.key}
+                    onClick={() => handleReporterClick(r.key)}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700"
+                  >
+                    {r.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-slate-700 text-white">
-          <div className="px-4 py-2 space-y-2">
-            <button
-              onClick={() => { onNavigate('home'); setIsMenuOpen(false); }}
-              className="block w-full text-left py-2 hover:text-yellow-400"
-            >
-              Home
-            </button>
-            <div className="border-l-2 border-yellow-400 pl-4">
+        <div className="md:hidden bg-white border-t border-gray-200 sticky top-[100px] z-30">
+          <nav className="flex flex-col px-4 py-2 space-y-1">
+            {sections.map((section) => (
               <button
-                onClick={() => handleReporterClick('lois')}
-                className="block w-full text-left py-1 hover:text-yellow-400"
+                key={section.page}
+                onClick={() => {
+                  onNavigate(section.page);
+                  setIsMenuOpen(false);
+                }}
+                className={`text-base font-serif text-left py-2 px-2 rounded hover:bg-gray-100 ${
+                  section.highlight ? 'text-red-700' : 'text-gray-800'
+                }`}
               >
-                Lois Lane
+                {section.label}
               </button>
+            ))}
+            <div className="border-t border-gray-200 my-2" />
+            <span className="text-xs text-gray-500 font-serif px-2 py-1">Reporters</span>
+            {reporters.map((r) => (
               <button
-                onClick={() => handleReporterClick('clark')}
-                className="block w-full text-left py-1 hover:text-yellow-400"
+                key={r.key}
+                onClick={() => handleReporterClick(r.key)}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700"
               >
-                Clark Kent
+                {r.name}
               </button>
-              <button
-                onClick={() => handleReporterClick('cat')}
-                className="block w-full text-left py-1 hover:text-yellow-400"
-              >
-                Cat Grant
-              </button>
-            </div>
-            <button
-              onClick={() => { onNavigate('lexwatch'); setIsMenuOpen(false); }}
-              className="block w-full text-left py-2 hover:text-yellow-400"
-            >
-              LexWatch
-            </button>
-            <button
-              onClick={() => { onNavigate('tracker'); setIsMenuOpen(false); }}
-              className="block w-full text-left py-2 hover:text-yellow-400"
-            >
-              Hero Tracker
-            </button>
-            <button
-              onClick={() => { onNavigate('archives'); setIsMenuOpen(false); }}
-              className="block w-full text-left py-2 hover:text-yellow-400"
-            >
-              Archives
-            </button>
-          </div>
+            ))}
+          </nav>
         </div>
       )}
-    </header>
+    </>
   );
 };
 

@@ -129,7 +129,7 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Profile Info */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden sticky top-8">
+          <div className="bg-white rounded-sm shadow-lg overflow-hidden sticky top-8">
             <div className="relative h-48 bg-gradient-to-r from-slate-800 to-slate-600">
               <img
                 src={data.image}
@@ -173,7 +173,7 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
           {/* Bio */}
-          <section className="bg-white rounded-2xl shadow-lg p-8">
+          <section className="bg-white rounded-sm shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6 text-slate-800 font-serif">Biography</h2>
             <p className="text-gray-800 leading-relaxed mb-6">{data.bio}</p>
             
@@ -183,7 +183,7 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
           </section>
 
           {/* Awards */}
-          <section className="bg-white rounded-2xl shadow-lg p-8">
+          <section className="bg-white rounded-sm shadow-lg p-8">
             <div className="flex items-center space-x-2 mb-6">
               <Award className="w-6 h-6 text-yellow-500" />
               <h2 className="text-2xl font-bold text-slate-800 font-serif">Awards & Recognition</h2>
@@ -192,7 +192,7 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
               {data.awards.map((award, index) => (
                 <div
                   key={index}
-                  className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-center space-x-3"
+                  className="bg-yellow-50 border border-yellow-200 rounded-sm p-4 flex items-center space-x-3"
                 >
                   <Award className="w-5 h-5 text-yellow-600 flex-shrink-0" />
                   <span className="text-sm font-medium text-yellow-800">{award}</span>
@@ -202,13 +202,13 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
           </section>
 
           {/* Recent Articles */}
-          <section className="bg-white rounded-2xl shadow-lg p-8">
+          <section className="bg-white rounded-sm shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6 text-slate-800 font-serif">Recent Articles</h2>
             <div className="space-y-4">
               {data.recentArticles.map((article, index) => (
                 <article
                   key={index}
-                  className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer group"
+                  className="border border-gray-200 rounded-sm p-6 hover:shadow-md transition-shadow cursor-pointer group"
                   onClick={() => onNavigate('article')}
                 >
                   <div className="flex items-start justify-between">
@@ -231,16 +231,16 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
           </section>
 
           {/* Contact */}
-          <section className="bg-gradient-to-r from-slate-800 to-slate-600 rounded-2xl shadow-lg p-8 text-white">
+          <section className="bg-gradient-to-r from-slate-800 to-slate-600 rounded-sm shadow-lg p-8 text-white">
             <h2 className="text-2xl font-bold mb-4 font-serif">Contact {data.name.split(' ')[0]}</h2>
             <p className="text-gray-200 mb-6">
               Have a story tip or want to get in touch? {data.name.split(' ')[0]} is always looking for compelling stories that matter to our readers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-slate-800 px-6 py-3 rounded-sm font-semibold hover:bg-gray-100 transition-colors">
                 Send Story Tip
               </button>
-              <button className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors">
+              <button className="border border-white text-white px-6 py-3 rounded-sm font-semibold hover:bg-white hover:text-slate-800 transition-colors">
                 Schedule Interview
               </button>
             </div>
