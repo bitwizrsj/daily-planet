@@ -49,8 +49,8 @@ const ContactMe: React.FC = () => {
       {/* Direct Contact Info */}
       <div className="bg-gray-100 p-4 rounded-md shadow-sm mb-6 text-center">
         <p className="text-sm font-semibold mb-2">📞 Mobile: <span className="font-normal">+91-8696403065</span></p>
-        <p className="text-sm font-semibold mb-2">📧 Email: <a href="mailto:your.rohitsj27@gmail.com" className="text-blue-600 underline">rohitsj27@google.com</a></p>
-        <p className="text-sm font-semibold">🔗 LinkedIn: <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">https://www.linkedin.com/in/rohit-singh-jatav-85078224a/</a></p>
+        <p className="text-sm font-semibold mb-2">📧 Email: <a href="mailto:rohitsj27@gmail.com" className="text-blue-600 underline">rohitsj27@google.com</a></p>
+        <p className="text-sm font-semibold">🔗 LinkedIn: <a href="https://www.linkedin.com/in/rohit-singh-jatav-85078224a/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">rohit-singh-jatav-85078224a</a></p>
       </div>
 
       {/* EmailJS Form */}
