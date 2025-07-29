@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Calendar, Tag, FileText, ArrowLeft, Filter, Clock } from 'lucide-react';
 
-interface ArchivesProps {
-  onNavigate: (page: string) => void;
-}
-
-const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
+const Archives: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('2025');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -118,13 +115,13 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       {/* Back Button */}
-      <button
-        onClick={() => onNavigate('home')}
+      <Link
+        to="/"
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Home</span>
-      </button>
+      </Link>
 
       {/* Header */}
       <header className="text-center mb-8">
@@ -209,41 +206,42 @@ const Archives: React.FC<ArchivesProps> = ({ onNavigate }) => {
           <article
             key={index}
             className="bg-white rounded-sm shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border border-gray-100"
-            onClick={() => onNavigate('article')}
           >
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-              <div className="flex-1">
-                <div className="flex items-center space-x-4 mb-3">
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span>{entry.date}</span>
+            <Link to="/article">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-4 mb-3">
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <Clock className="w-4 h-4" />
+                      <span>{entry.date}</span>
+                    </div>
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">
+                      {entry.category}
+                    </span>
+                    <span className={`px-2 py-1 rounded text-xs font-semibold border ${
+                      significanceColors[entry.significance as keyof typeof significanceColors]
+                    }`}>
+                      {entry.significance}
+                    </span>
                   </div>
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">
-                    {entry.category}
-                  </span>
-                  <span className={`px-2 py-1 rounded text-xs font-semibold border ${
-                    significanceColors[entry.significance as keyof typeof significanceColors]
-                  }`}>
-                    {entry.significance}
-                  </span>
-                </div>
 
-                <h2 className="text-xl font-bold mb-2 text-slate-800 hover:text-blue-600 transition-colors font-serif">
-                  {entry.headline}
-                </h2>
+                  <h2 className="text-xl font-bold mb-2 text-slate-800 hover:text-blue-600 transition-colors font-serif">
+                    {entry.headline}
+                  </h2>
 
-                <p className="text-gray-700 mb-3 leading-relaxed">
-                  {entry.excerpt}
-                </p>
+                  <p className="text-gray-700 mb-3 leading-relaxed">
+                    {entry.excerpt}
+                  </p>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">By {entry.author}</span>
-                  <button className="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">
-                    Read Full Article →
-                  </button>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">By {entry.author}</span>
+                    <span className="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">
+                      Read Full Article →
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </article>
         ))}
       </div>

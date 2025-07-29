@@ -1,11 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Clock, Share2, Bookmark, Heart, MessageCircle, ArrowLeft } from 'lucide-react';
 
-interface ArticleProps {
-  onNavigate: (page: string) => void;
-}
-
-const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
+const Article: React.FC = () => {
   const article = {
     title: "Superman Saves Metropolis from Brainiac's Attack",
     subtitle: "Exclusive: Inside the 6-hour siege that nearly destroyed the city",
@@ -37,13 +34,13 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
   return (
     <main className="max-w-4xl mx-auto px-4 py-8">
       {/* Back Button */}
-      <button
-        onClick={() => onNavigate('home')}
+      <Link
+        to="/"
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Home</span>
-      </button>
+      </Link>
 
       {/* Article Header */}
       <header className="mb-8">
@@ -212,14 +209,15 @@ const Article: React.FC<ArticleProps> = ({ onNavigate }) => {
                 <div
                   key={index}
                   className="cursor-pointer hover:bg-gray-50 p-3 rounded-sm transition-colors"
-                  onClick={() => onNavigate('article')}
                 >
-                  <h4 className="font-semibold text-sm text-slate-800 hover:text-blue-600 transition-colors">
-                    {related.title}
-                  </h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    By {related.author} • {related.time}
-                  </p>
+                  <Link to="/article">
+                    <h4 className="font-semibold text-sm text-slate-800 hover:text-blue-600 transition-colors">
+                      {related.title}
+                    </h4>
+                    <p className="text-xs text-gray-600 mt-1">
+                      By {related.author} • {related.time}
+                    </p>
+                  </Link>
                 </div>
               ))}
             </div>

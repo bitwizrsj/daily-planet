@@ -1,39 +1,20 @@
 import React, { useState } from 'react';
 import { Search, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-interface HeaderProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
-  onReporterSelect: (reporter: string) => void;
-}
-
 const sections = [
-  { label: 'Home', page: '' },
-  { label: 'LexWatch', page: 'lexwatch', highlight: true },
-  { label: 'Hero Tracker', page: 'tracker' },
-  { label: 'Archives', page: 'archives' },
-  { label: 'Contact Me', page: 'contact' },
+  { label: 'Home', path: '/' },
+  { label: 'LexWatch', path: '/lexwatch', highlight: true },
+  { label: 'Hero Tracker', path: '/tracker' },
+  { label: 'Reporters', path: '/reporters' },
+  { label: 'Archives', path: '/archives' },
+  { label: 'Contact Me', path: '/contact' },
 ];
 
-const reporters = [
-  { name: 'Lois Lane', key: 'lois' },
-  { name: 'Clark Kent', key: 'clark' },
-  { name: 'Cat Grant', key: 'cat' },
-];
-
-const Header: React.FC<HeaderProps> = ({
-  currentPage,
-  onNavigate,
-  onReporterSelect,
-}) => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleReporterClick = (reporter: string) => {
-    onReporterSelect(reporter);
-    onNavigate('reporter');
-    setIsMenuOpen(false);
-  };
+  const location = useLocation();
 
   return (
     <>
@@ -55,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
               padding: '4px 8px',
               fontWeight: 500,
               boxShadow: '1px 1px 0 #888, -1px -1px 0 #888',
-              fontFamily: 'Georgia, Times, \"Times New Roman\", serif',
+              fontFamily: 'Georgia, Times, "Times New Roman", serif',
               lineHeight: 1.1,
             }}
           >
@@ -93,11 +74,13 @@ const Header: React.FC<HeaderProps> = ({
           </button>
 
           {/* Logo */}
-          <img
-            src={logo}
-            alt="The Daily Planet"
-            className="w-44 md:w-[300px] object-contain"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="The Daily Planet"
+              className="w-44 md:w-[300px] object-contain"
+            />
+          </Link>
 
           {/* Search Icon (right side, always shown) */}
           <button
@@ -114,11 +97,11 @@ const Header: React.FC<HeaderProps> = ({
         <div className="max-w-7xl mx-auto flex items-center py-0 px-4">
           <nav className="flex flex-1 justify-center space-x-6 w-full">
             {sections.map((section) => (
-              <button
-                key={section.page}
-                onClick={() => onNavigate(section.page)}
+              <Link
+                key={section.path}
+                to={section.path}
                 className={`text-sm font-serif uppercase tracking-wide px-2 py-3 hover:underline transition-colors ${
-                  currentPage === section.page
+                  location.pathname === section.path
                     ? 'text-black underline underline-offset-4'
                     : section.highlight
                     ? 'text-red-700'
@@ -126,26 +109,8 @@ const Header: React.FC<HeaderProps> = ({
                 }`}
               >
                 {section.label}
-              </button>
+              </Link>
             ))}
-
-            {/* Reporters dropdown */}
-            <div className="relative group">
-              <button className="text-sm font-serif uppercase tracking-wide px-2 py-3 hover:underline text-gray-700">
-                Reporters
-              </button>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-white border border-gray-200 shadow-lg rounded min-w-40 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none transition-opacity z-20">
-                {reporters.map((r) => (
-                  <button
-                    key={r.key}
-                    onClick={() => handleReporterClick(r.key)}
-                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700"
-                  >
-                    {r.name}
-                  </button>
-                ))}
-              </div>
-            </div>
           </nav>
         </div>
       </header>
@@ -155,29 +120,16 @@ const Header: React.FC<HeaderProps> = ({
         <div className="md:hidden bg-white border-t border-gray-200 sticky top-[100px] z-30">
           <nav className="flex flex-col px-4 py-2 space-y-1">
             {sections.map((section) => (
-              <button
-                key={section.page}
-                onClick={() => {
-                  onNavigate(section.page);
-                  setIsMenuOpen(false);
-                }}
+              <Link
+                key={section.path}
+                to={section.path}
+                onClick={() => setIsMenuOpen(false)}
                 className={`text-base font-serif text-left py-2 px-2 rounded hover:bg-gray-100 ${
                   section.highlight ? 'text-red-700' : 'text-gray-800'
                 }`}
               >
                 {section.label}
-              </button>
-            ))}
-            <div className="border-t border-gray-200 my-2" />
-            <span className="text-xs text-gray-500 font-serif px-2 py-1">Reporters</span>
-            {reporters.map((r) => (
-              <button
-                key={r.key}
-                onClick={() => handleReporterClick(r.key)}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-gray-700"
-              >
-                {r.name}
-              </button>
+              </Link>
             ))}
           </nav>
         </div>

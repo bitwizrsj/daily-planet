@@ -1,12 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Twitter, Facebook, Instagram, Youtube } from 'lucide-react';
 import logo from '../assets/logo.png';
 
-interface FooterProps {
-  onNavigate: (page: string) => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-200 mt-16 font-serif">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -40,36 +37,36 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="text-lg font-bold mb-4 text-slate-900">Sections</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <button
-                  onClick={() => onNavigate('home')}
+                <Link
+                  to="/"
                   className="text-gray-700 hover:text-blue-700 transition-colors"
                 >
                   Breaking News
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('lexwatch')}
+                <Link
+                  to="/lexwatch"
                   className="text-gray-700 hover:text-red-700 transition-colors"
                 >
                   LexWatch
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('tracker')}
+                <Link
+                  to="/tracker"
                   className="text-gray-700 hover:text-blue-700 transition-colors"
                 >
                   Hero Tracker
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('archives')}
+                <Link
+                  to="/archives"
                   className="text-gray-700 hover:text-blue-700 transition-colors"
                 >
                   Archives
-                </button>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-gray-700 hover:text-blue-700 transition-colors">

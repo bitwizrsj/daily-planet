@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Eye, AlertTriangle, FileText, Clock, Users, ArrowLeft, Shield } from 'lucide-react';
 
-interface LexWatchProps {
-  onNavigate: (page: string) => void;
-}
-
-const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
+const LexWatch: React.FC = () => {
   const [activeTab, setActiveTab] = useState('investigations');
 
   const investigations = [
@@ -95,13 +92,13 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       {/* Back Button */}
-      <button
-        onClick={() => onNavigate('home')}
+      <Link
+        to="/"
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Home</span>
-      </button>
+      </Link>
 
       {/* Header */}
       <header className="text-center mb-12">
@@ -162,41 +159,42 @@ const LexWatch: React.FC<LexWatchProps> = ({ onNavigate }) => {
               <article
                 key={index}
                 className="bg-white rounded-sm shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => onNavigate('article')}
               >
-                <img
-                  src={investigation.image}
-                  alt={investigation.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      investigation.severity === 'Critical'
-                        ? 'bg-red-100 text-red-800'
-                        : 'bg-orange-100 text-orange-800'
-                    }`}>
-                      {investigation.severity}
-                    </span>
-                    <span className="text-sm text-gray-500">{investigation.status}</span>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold mb-3 text-slate-800 hover:text-red-600 transition-colors">
-                    {investigation.title}
-                  </h3>
-                  
-                  <p className="text-gray-700 text-sm mb-4 line-clamp-3">
-                    {investigation.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between text-sm text-gray-600">
-                    <span>By {investigation.author}</span>
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{investigation.publishDate}</span>
+                <Link to="/article">
+                  <img
+                    src={investigation.image}
+                    alt={investigation.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        investigation.severity === 'Critical'
+                          ? 'bg-red-100 text-red-800'
+                          : 'bg-orange-100 text-orange-800'
+                      }`}>
+                        {investigation.severity}
+                      </span>
+                      <span className="text-sm text-gray-500">{investigation.status}</span>
+                    </div>
+                    
+                    <h3 className="text-lg font-bold mb-3 text-slate-800 hover:text-red-600 transition-colors">
+                      {investigation.title}
+                    </h3>
+                    
+                    <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                      {investigation.excerpt}
+                    </p>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <span>By {investigation.author}</span>
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{investigation.publishDate}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </article>
             ))}
           </div>

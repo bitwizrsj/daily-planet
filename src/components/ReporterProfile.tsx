@@ -1,12 +1,10 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Award, Calendar, MapPin, ArrowLeft, ExternalLink } from 'lucide-react';
 
-interface ReporterProfileProps {
-  reporter: string;
-  onNavigate: (page: string) => void;
-}
+const ReporterProfile: React.FC = () => {
+  const { reporterId } = useParams<{ reporterId: string }>();
 
-const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate }) => {
   const reporterData = {
     lois: {
       name: "Lois Lane",
@@ -109,22 +107,29 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
     }
   };
 
-  const data = reporterData[reporter as keyof typeof reporterData];
+  const data = reporterId ? reporterData[reporterId as keyof typeof reporterData] : null;
 
   if (!data) {
-    return <div>Reporter not found</div>;
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-8 text-center">
+        <h1 className="text-2xl font-bold text-slate-800 mb-4">Reporter Not Found</h1>
+        <Link to="/reporters" className="text-blue-600 hover:text-blue-800">
+          Back to Reporters
+        </Link>
+      </div>
+    );
   }
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
       {/* Back Button */}
-      <button
-        onClick={() => onNavigate('home')}
+      <Link
+        to="/reporters"
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Back to Home</span>
-      </button>
+        <span>Back to Reporters</span>
+      </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Profile Info */}
@@ -209,22 +214,23 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
                 <article
                   key={index}
                   className="border border-gray-200 rounded-sm p-6 hover:shadow-md transition-shadow cursor-pointer group"
-                  onClick={() => onNavigate('article')}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">
-                          {article.category}
-                        </span>
-                        <span className="text-sm text-gray-500">{article.date}</span>
+                  <Link to="/article" className="block">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-semibold">
+                            {article.category}
+                          </span>
+                          <span className="text-sm text-gray-500">{article.date}</span>
+                        </div>
+                        <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                          {article.title}
+                        </h3>
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
-                        {article.title}
-                      </h3>
+                      <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0 ml-4" />
                     </div>
-                    <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0 ml-4" />
-                  </div>
+                  </Link>
                 </article>
               ))}
             </div>
@@ -237,9 +243,12 @@ const ReporterProfile: React.FC<ReporterProfileProps> = ({ reporter, onNavigate 
               Have a story tip or want to get in touch? {data.name.split(' ')[0]} is always looking for compelling stories that matter to our readers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-white text-slate-800 px-6 py-3 rounded-sm font-semibold hover:bg-gray-100 transition-colors">
+              <Link
+                to="/contact"
+                className="bg-white text-slate-800 px-6 py-3 rounded-sm font-semibold hover:bg-gray-100 transition-colors text-center"
+              >
                 Send Story Tip
-              </button>
+              </Link>
               <button className="border border-white text-white px-6 py-3 rounded-sm font-semibold hover:bg-white hover:text-slate-800 transition-colors">
                 Schedule Interview
               </button>

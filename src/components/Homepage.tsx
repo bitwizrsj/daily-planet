@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Clock,
   MapPin,
@@ -7,18 +8,14 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-interface HomepageProps {
-  onNavigate: (page: string) => void;
-}
-
-const Homepage: React.FC<HomepageProps> = ({ onNavigate }) => {
+const Homepage: React.FC = () => {
   const heroStory = {
     title: "LOOK UP IT'S SUPERMAN",
     subtitle:
       'Exclusive: Inside the 6-hour siege that nearly destroyed the city',
     author: 'Lois Lane',
     time: '2 hours ago',
-    image: 'https://i.ytimg.com/vi/uhUht6vAsMY/maxresdefault.jpg',
+    image: 'https://images4.alphacoders.com/138/1385846.jpg',
   };
 
   const topNews = {
@@ -104,7 +101,7 @@ const Homepage: React.FC<HomepageProps> = ({ onNavigate }) => {
             <img
               src={heroStory.image}
               alt="Hero story"
-              className="w-full h-[70vh] object-cover opacity-60"
+              className="w-full h-[70vh] object-cover object-top opacity-60"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-800/50 to-transparent">
               <div className="absolute bottom-0 left-0 p-8">
@@ -178,30 +175,31 @@ const Homepage: React.FC<HomepageProps> = ({ onNavigate }) => {
                 <article
                   key={index}
                   className="group border-b border-gray-300 pb-6 cursor-pointer hover:bg-gray-50 p-3 transition-colors"
-                  onClick={() => onNavigate('article')}
                 >
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-48 object-cover border border-gray-300 mb-3"
-                  />
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-serif font-bold text-black uppercase tracking-wider border border-black px-2 py-1">
-                        {article.category}
-                      </span>
-                      <div className="flex items-center text-gray-500 text-xs font-serif">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {article.time}
+                  <Link to="/article">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-48 object-cover border border-gray-300 mb-3"
+                    />
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-serif font-bold text-black uppercase tracking-wider border border-black px-2 py-1">
+                          {article.category}
+                        </span>
+                        <div className="flex items-center text-gray-500 text-xs font-serif">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {article.time}
+                        </div>
                       </div>
+                      <h3 className="text-lg font-serif font-bold text-black leading-tight group-hover:underline">
+                        {article.title}
+                      </h3>
+                      <p className="text-xs font-serif text-gray-600 uppercase tracking-wide">
+                        By {article.author}
+                      </p>
                     </div>
-                    <h3 className="text-lg font-serif font-bold text-black leading-tight group-hover:underline">
-                      {article.title}
-                    </h3>
-                    <p className="text-xs font-serif text-gray-600 uppercase tracking-wide">
-                      By {article.author}
-                    </p>
-                  </div>
+                  </Link>
                 </article>
               ))}
             </div>
@@ -240,10 +238,9 @@ const Homepage: React.FC<HomepageProps> = ({ onNavigate }) => {
                   </span>
                 </div>
                 <button
-                  onClick={() => onNavigate('tracker')}
                   className="w-full bg-gray-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-gray-800 transition-colors"
                 >
-                  View Full Tracker
+                  <Link to="/tracker">View Full Tracker</Link>
                 </button>
               </div>
             </div>
@@ -302,12 +299,12 @@ const Homepage: React.FC<HomepageProps> = ({ onNavigate }) => {
                   New evidence suggests LexCorp's involvement in recent satellite
                   malfunction.
                 </p>
-                <button
-                  onClick={() => onNavigate('lexwatch')}
-                  className="w-full bg-red-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-red-700 transition-colors"
+                <Link
+                  to="/lexwatch"
+                  className="block w-full bg-red-600 text-white py-2 font-serif font-bold text-sm uppercase tracking-wide hover:bg-red-700 transition-colors text-center"
                 >
                   Read Investigation
-                </button>
+                </Link>
               </div>
             </div>
           </aside>

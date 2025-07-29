@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
 import Article from './components/Article';
@@ -8,44 +9,27 @@ import HeroTracker from './components/HeroTracker';
 import Archives from './components/Archives';
 import ContactMe from './components/ContactMe';
 import Footer from './components/Footer';
-
-type Page = 'home' | 'article' | 'reporter' | 'lexwatch' | 'tracker' | 'archives' | 'contact';
+import ReportersPage from './components/ReportersPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [selectedReporter, setSelectedReporter] = useState<string>('lois');
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <Homepage onNavigate={setCurrentPage} />;
-      case 'article':
-        return <Article onNavigate={setCurrentPage} />;
-      case 'reporter':
-        return <ReporterProfile reporter={selectedReporter} onNavigate={setCurrentPage} />;
-      case 'lexwatch':
-        return <LexWatch onNavigate={setCurrentPage} />;
-      case 'tracker':
-        return <HeroTracker onNavigate={setCurrentPage} />;
-      case 'archives':
-        return <Archives onNavigate={setCurrentPage} />;
-      case 'contact':
-        return <ContactMe onNavigate={setCurrentPage} />;
-      default:
-        return <Homepage onNavigate={setCurrentPage} />;
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-white">
-      <Header 
-        currentPage={currentPage} 
-        onNavigate={setCurrentPage}
-        onReporterSelect={setSelectedReporter}
-      />
-      {renderPage()}
-      <Footer onNavigate={setCurrentPage} />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/article" element={<Article />} />
+          <Route path="/reporters" element={<ReportersPage />} />
+          <Route path="/reporter/:reporterId" element={<ReporterProfile />} />
+          <Route path="/lexwatch" element={<LexWatch />} />
+          <Route path="/tracker" element={<HeroTracker />} />
+          <Route path="/archives" element={<Archives />} />
+          <Route path="/contact" element={<ContactMe />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

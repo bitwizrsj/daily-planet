@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, Activity, Clock, Filter, Zap, ArrowLeft, Shield, Compass } from 'lucide-react';
 
-interface HeroTrackerProps {
-  onNavigate: (page: string) => void;
-}
-
-const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
+const HeroTracker: React.FC = () => {
   const [selectedHero, setSelectedHero] = useState('all');
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -111,13 +108,13 @@ const HeroTracker: React.FC<HeroTrackerProps> = ({ onNavigate }) => {
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       {/* Back Button */}
-      <button
-        onClick={() => onNavigate('home')}
+      <Link
+        to="/"
         className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Home</span>
-      </button>
+      </Link>
 
       {/* Header */}
       <header className="text-center mb-8">
