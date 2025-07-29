@@ -6,9 +6,10 @@ import ReporterProfile from './components/ReporterProfile';
 import LexWatch from './components/LexWatch';
 import HeroTracker from './components/HeroTracker';
 import Archives from './components/Archives';
+import ContactMe from './components/ContactMe';
 import Footer from './components/Footer';
 
-type Page = 'home' | 'article' | 'reporter' | 'lexwatch' | 'tracker' | 'archives';
+type Page = 'home' | 'article' | 'reporter' | 'lexwatch' | 'tracker' | 'archives' | 'contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -28,6 +29,8 @@ function App() {
         return <HeroTracker onNavigate={setCurrentPage} />;
       case 'archives':
         return <Archives onNavigate={setCurrentPage} />;
+      case 'contact':
+        return <ContactMe onNavigate={setCurrentPage} />;
       default:
         return <Homepage onNavigate={setCurrentPage} />;
     }

@@ -13,6 +13,7 @@ const sections = [
   { label: 'LexWatch', page: 'lexwatch', highlight: true },
   { label: 'Hero Tracker', page: 'tracker' },
   { label: 'Archives', page: 'archives' },
+  { label: 'Contact Me', page: 'contact' },
 ];
 
 const reporters = [
